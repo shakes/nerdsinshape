@@ -65,7 +65,12 @@ class User < ActiveRecord::Base
           u.password_confirmation = pass
           u.twitter_id = user_id
           u.save!
-          # t.d(username, "nerdsinshape.com password: #{pass}")
+          puts "Following #{username}"
+          if not t.friendship_exists?(TWITTER_USERNAME, username)
+              t.create_friendship(username)
+              t.follow(username)
+              # t.d(username, "nerdsinshape.com password: #{pass}")
+          end
           return u.reload
       end
       return nil

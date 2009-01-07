@@ -5,6 +5,11 @@ module ApplicationHelper
     end
 
     def lastupdate
-        @lastupdate = Status.find_by_id(1)
+        lastupdate = Status.find_by_id(1)
+        if lastupdate
+            @lastupdate = lastupdate.updated_at
+        else
+            @lastupdate = "Not collected yet!"
+        end
     end
 end
