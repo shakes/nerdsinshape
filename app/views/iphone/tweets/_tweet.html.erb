@@ -1,0 +1,1 @@
+<p class="tweet">Tweet from <%=h tweet.user.name %>@<%=h tweet.tweeted_at %>: <%= twitterify(auto_link(h(tweet.body), :link=>:urls)) %>
