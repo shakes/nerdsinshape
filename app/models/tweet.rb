@@ -8,11 +8,12 @@ class Tweet < ActiveRecord::Base
         twitter = Twitter::Base.new(TWITTER_USERNAME, TWITTER_PASSWORD)
         new_tweets = nil
         if latest
-            new_tweets = twitter.timeline(:friends, :since_id=>latest.tweet_id)
+            new_tweets = twitter.timeline(:friends, :count=>200, :since_id=>latest.tweet_id)
         else
-            new_tweets = twitter.timeline(:friends)
+            new_tweets = twitter.timeline(:friends, :count=>200)
         end
         new_tweets.each do |r|
+            puts r.inspect
             if r.text.index("#Nerds_In_Shape")
                 t = new
                 t.body = r.text

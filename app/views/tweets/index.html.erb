@@ -3,4 +3,4 @@
 <%- end -%>
 <%= render :partial=>@tweets %>
 <%= will_paginate -%>
-<p>Last Collected @ <%- lastupdate -%><%= @lastupdate -%></p>
+<p>Last Collected @ <%- lastupdate -%><%= nice_date @lastupdate -%></p>

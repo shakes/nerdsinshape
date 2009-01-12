@@ -1,0 +1,10 @@
+<%- content_for(:title) do -%>
+#Nerds_In_Shape Tracking : Logs
+<%- end -%>
+<%- for p in @tweets -%>
+<%- log = regexit(p.body) -%>
+<%- if !log.blank? -%>
+<p><%= p.user.name %> did <%= regexit(p.body) %></p>
+<%- end -%>
+<%- end -%>
+<p>Last Collected @ <%- lastupdate -%><%= nice_date @lastupdate -%></p>

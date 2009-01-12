@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
       if f.include?(username)
           u = new
           pass = ActiveSupport::SecureRandom.base64(6)
-          u.name = tu.name
+          u.name = tu.screen_name
           u.login = username
           u.email = "seb-#{username}@b0b.net"
           puts u.email

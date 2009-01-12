@@ -4,4 +4,8 @@ class TweetsController < ApplicationController
                                  :page=>params[:page],
                                  :order=>"tweeted_at DESC")
     end
+
+    def log
+        @tweets = Tweet.find(:all)
+    end
 end

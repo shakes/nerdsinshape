@@ -12,6 +12,7 @@ namespace :nis do
         twitter.friends.each do |u|
             if !followers.include?(u.screen_name)
                 twitter.follow(u.screen_name)
+                puts "Following #{u.screen_name}"
             end
         end
      end
@@ -21,7 +22,12 @@ namespace :nis do
         twitter = Twitter::Base.new(TWITTER_USERNAME, TWITTER_PASSWORD)
         twitter.followers.each do |u|
             if !twitter.friendship_exists?(TWITTER_USERNAME, u.screen_name)
-                twitter.create_friendship(u.screen_name)
+                begin
+                    twitter.create_friendship(u.screen_name)
+                    puts "Friended #{u.screen_name}"
+                rescue Twitter::CantFollowUser 
+                    puts "Unable to friend #{u.screen_name}"
+                end
             end
         end
      end
