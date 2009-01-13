@@ -6,6 +6,6 @@ class TweetsController < ApplicationController
     end
 
     def log
-        @tweets = Tweet.find(:all)
+        @tweets = Tweet.find(:all, :order=>"tweeted_at DESC")
     end
 end
