@@ -11,8 +11,12 @@ namespace :nis do
         followers = twitter.followers.collect {|x| x.screen_name }
         twitter.friends.each do |u|
             if !followers.include?(u.screen_name)
-                twitter.follow(u.screen_name)
-                puts "Following #{u.screen_name}"
+                begin
+                    twitter.follow(u.screen_name)
+                    puts "Following #{u.screen_name}"
+                rescue Twitter::CantFollowUser 
+                    puts "Unable to follow #{u.screen_name}"
+                end
             end
         end
      end
@@ -30,5 +34,9 @@ namespace :nis do
                 end
             end
         end
+     end
+
+     desc "Does Friends and Followers in the right order"
+     task :ff => [ :friends, :followers ] do |t|
      end
 end
